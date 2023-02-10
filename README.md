@@ -1,6 +1,6 @@
 # 411_Project
 
-Ideas: 
+## Ideas: 
 - Sports
 - Students - Study places mapping
 - IOS App
