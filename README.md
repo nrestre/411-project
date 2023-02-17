@@ -2,11 +2,7 @@
 
 ## Ideas: 
 
-
-
-
-
-
+1. Study areas at BU this will include their location with GPS a description of how busy , large and quite each place is and an slef updating data that changes on certin times on how busy everything is. user input helps us and incresses a confidence level for out metrics for how budy. 
 
 
 
