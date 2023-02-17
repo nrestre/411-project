@@ -1,5 +1,17 @@
 # 411_Project
 
 ## Ideas: 
-- Students - Study places mapping (user input and times to edit amout of people there + food/dining halls, with near by GPS, and adress + room) 
-- sports matches and where everything is on each challeele proitites free over paid
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. For sporting events, the program will tell you all sport games going on right now, the score and some statistics and historical data, and then it will say where the user can stream the game, prioritizing cable and free streaming options, and provide a link to the top (free/cheapest) online streaming service to watch that game.
