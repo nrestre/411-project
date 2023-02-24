@@ -6,5 +6,5 @@
     - OAuth 2.0 via BU Google Account
 2. App lists all sport games playing at the moment, their scores and some statistics / historical data. It will provide instructions to stream the game, prioritizing cable and free streaming options.
     - Database: store user session and favorite sports (display favorite sports first)
-    - APIs: [API-SPORTS](https://api-sports.io/) for sports data, [Streaming Availability API](https://rapidapi.com/movie-of-the-night-movie-of-the-night-default/api/streaming-availability/details) for shows on streaming providers (trouble finding live stream sports API)
+    - APIs: [API-SPORTS](https://api-sports.io/) for sports data and [Streaming Availability API](https://rapidapi.com/movie-of-the-night-movie-of-the-night-default/api/streaming-availability/details) for shows by streaming providers (trouble finding live stream sports API)
     - OAuth 2.0 via Google or other providers
