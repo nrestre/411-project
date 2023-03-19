@@ -1,5 +1,10 @@
-# 411_Project
-## Ideas
+# Project Proposal
+## Requirements
+1. It must utilize a database
+2. It must correlate at least two publicly available data sets via API from the Internet
+3. It must use third-party authentication
+4. It must have a decoupled architecture
+## Project Ideas
 1. App displays study areas at BU. Each study area is marked with a GPS location on a map with a description of the crowd and noise level. The app constantly updates with crowd-sourced feedback, i.e. from the app users.
     - Database: store study areas and relevant properties of each location
     - APIs: Weather and Google Maps
