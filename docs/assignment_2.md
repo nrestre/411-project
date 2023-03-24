@@ -64,6 +64,11 @@ It would be best to only accept information from people whose GPS is at said loc
 &nbsp;
 
 ## User Story 5:
-"As a user, I want to..., so that..."
+"As a user, I want to find study area in which I can talk with friends but that a spot is almost granted at this time, so that me and my friends can meet there and get a table for the whole afternoon."
 ### Happy Path:
+1. User logs into app and is redirected to the home page.
+2. The user looks in the map at the study areas nearby and clicks the "filter" button under the search bar above the map.
+3. The user chooses the level of noise and crowdedness from the filtering slide bars and clicks "apply".
+4. Now the user only sees study areas matching his criteria, if any.
 ### Exceptions:
+The map API might fail, but as mentioned before, there will be a table view that replaces the map if it is not working, and the filtering will work on the table exactly the same. In the case in which there are no results for the user's filters in the specified area, a message will show across the map, or where the table should appear saying "No study areas match your criteria in the selected area at this time".
