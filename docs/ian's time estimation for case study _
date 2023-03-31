@@ -1,1 +1,15 @@
-time for all thing realted to... test 1
+User Story 2:
+"As a logged in user, I want to view study areas relative to my location, so that I can find a study area that is convenient for me."
+
+Happy Path:
+After logging in, user is redirected to the home page
+User can see a map of marked study areas relative to their location
+Each study area has a indicator of the crowd and noise level
+User can click on a study area to view more information about it
+
+
+
+for creating the login it will take -- 4 hours 
+disgined the map of and the layout of the progeam will take 5 hours 
+adding 2 locations will take 3 hours 
+and comingi and usingthe api will take 5 hours to implement
