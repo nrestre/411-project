@@ -6,7 +6,23 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+}
+
+model Study {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  name       String
+  lat        Float
+  long       Float
+  noiseLevel Float    @default(0)
+  crowdLevel Float    @default(0)
 }
