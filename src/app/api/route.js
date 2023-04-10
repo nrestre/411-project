@@ -1,0 +1,18 @@
+import { NextResponse } from "next/server";
+
+const zip = "02215";
+const country = "US";
+const api_key = process.env.WEATHER_API_KEY;
+
+export default async function GET(req, res) {
+  const locationResponse = await fetch(
+    `http://api.openweathermap.org/geo/1.0/zip?zip=${zip},${country}&appid=${api_key}`
+  );
+  const locationData = await locationResponse.json();
+  const { lat, lon } = locationData;
+  const weatherResponse = await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}`
+  );
+  const weatherData = await weatherResponse.json();
+  return NextResponse.json(weatherData);
+}
