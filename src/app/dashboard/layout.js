@@ -1,5 +1,20 @@
-import AuthContext from "./AuthContext";
+import { notFound } from "next/navigation";
 
-export default function AccountLayout({ children }) {
-  return <AuthContext>{children}</AuthContext>;
+import { getCurrentUser } from "@/lib/session";
+
+export default async function DashboardLayout({ children }) {
+  const user = await getCurrentUser();
+  
+  if (!user) {
+    return notFound();
+  }
+
+  return (
+    <>
+      <header>
+        <h1>Dashboard</h1>
+      </header>
+      {children}
+    </>
+  );
 }

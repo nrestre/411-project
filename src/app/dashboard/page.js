@@ -1,9 +1,3 @@
-import { useSession } from "next-auth/react";
-
-export default function Dashboard() {
-  return (
-    <div>
-      <h1>Dashboard</h1>
-    </div>
-  );
+export default async function Dashboard() {
+  return <h1>Hello</h1>;
 }
