@@ -1,27 +1,23 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
+"use client";
+
+import useSWR from "swr";
 
 import styles from "@/app/page.module.css";
 import { LoginButton } from "@/components/user-auth-btn";
-import { server } from "@/config";
 
-const inter = Inter({ subsets: ["latin"] });
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
-async function getWeatherData() {
-  const res = await fetch(`${server}/api/weather`, {
-    next: { revalidate: 300 },
+export default function IndexPage() {
+  const { data, error, isLoading } = useSWR("/api/weather", fetcher, {
+    refreshInterval: 1000 * 60 * 5,
   });
-  return res.json();
-}
-
-export default async function IndexPage() {
-  const weatherData = await getWeatherData();
-  const { weather, main, wind } = weatherData;
+  if (error) return "An error has occurred.";
+  if (isLoading) return "Loading...";
   return (
     <main className={styles.main}>
       <h1>Current Weather</h1>
-      <div>Temp: {main.temp} F</div>
-      <div>Feels like: {main.feels_like} F</div>
+      <div>Temp: {data.main.temp} F</div>
+      <div>Feels like: {data.main.feels_like} F</div>
       <LoginButton />
     </main>
   );
