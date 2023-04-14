@@ -1,0 +1,21 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set height to full viewport height */
+}
+
+.login-button {
+    margin-top: 16px; /* Add margin to top of button */
+    padding: 12px 24px; /* Add padding to button */
+    background-color: #007bff; /* Example background color */
+    color: #fff; /* Example text color */
+    font-size: 18px; /* Example font size */
+    border: none; /* Remove button border */
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #0056b3; /* Example hover background color */
+}
