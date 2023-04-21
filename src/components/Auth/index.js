@@ -2,9 +2,12 @@
 
 import { signIn, signOut } from "next-auth/react";
 
+import "./Auth.css";
+
 export function LoginButton() {
   return (
     <button
+      className="auth-button"
       type="button"
       onClick={() => {
         signIn("google", { callbackUrl: "/dashboard" });
@@ -18,6 +21,7 @@ export function LoginButton() {
 export function SignOutButton() {
   return (
     <button
+      className="auth-button"
       type="button"
       onClick={() => {
         signOut({ callbackUrl: "/" });
