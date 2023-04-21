@@ -1,7 +1,8 @@
 "use client";
 
 import useSWR from "swr";
-import { ClipLoader } from "react-spinners";
+import { notFound } from "next/navigation";
+import { SyncLoader } from "react-spinners";
 
 import { fetcher } from "@/lib/helpers";
 
@@ -10,13 +11,18 @@ const Weather = () => {
     refreshInterval: 1000 * 60 * 5,
   });
   if (error) return notFound();
-  if (isLoading) return <ClipLoader />;
   return (
     <>
       <h1>Current Weather</h1>
       <h2>at Boston University</h2>
-      <div>Temp: {data.main.temp} F</div>
-      <div>Feels like: {data.main.feels_like} F</div>
+      {isLoading ? (
+        <SyncLoader color="#36d7b7" aria-label="Loading Spinner" />
+      ) : (
+        <>
+          <div>Temp: {data.main.temp} F</div>
+          <div>Feels like: {data.main.feels_like} F</div>
+        </>
+      )}
     </>
   );
 };
