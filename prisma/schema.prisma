@@ -56,11 +56,13 @@ model VerificationToken {
 }
 
 model Study {
-  id         Int      @id @default(autoincrement())
-  createdAt  DateTime @default(now())
-  name       String
-  lat        Float
-  long       Float
-  noiseLevel Float    @default(0)
-  crowdLevel Float    @default(0)
+  id          Int      @id @default(autoincrement())
+  created_at  DateTime @default(now())
+  name        String
+  description String?
+  lat         Float
+  long        Float
+  noise_level Float    @default(0)
+  crowd_level Float    @default(0)
+  last_update DateTime @default(now())
 }
