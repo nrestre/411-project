@@ -16,6 +16,7 @@ export default function IndexPage() {
   return (
     <main className={styles.main}>
       <h1>Current Weather</h1>
+      <h1>at Boston University</h1>
       <div>Temp: {data.main.temp} F</div>
       <div>Feels like: {data.main.feels_like} F</div>
       <LoginButton />
