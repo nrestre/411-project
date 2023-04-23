@@ -13,9 +13,15 @@ const Weather = () => {
   });
   if (error) return notFound();
   return (
+<<<<<<< HEAD
     <div className="weather-container">
       <h1>Current Weather</h1>
       <h2>Boston University</h2>
+=======
+    <>
+      <h1 className="header-weather" >Current Weather</h1>
+      <h2 className="location" >Boston University</h2>
+>>>>>>> 3844ea6 (Interface fixed, working on google maps)
       {isLoading ? (
         <SyncLoader
           color="#36d7b7"
@@ -24,8 +30,8 @@ const Weather = () => {
         />
       ) : (
         <>
-          <div>Temp: {data.main.temp} F</div>
-          <div>Feels like: {data.main.feels_like} F</div>
+          <div className="temperature" >Temp: {data.main.temp} F</div>
+          <div className="feel-like" >Feels like: {data.main.feels_like} F</div>
         </>
       )}
     </div>
