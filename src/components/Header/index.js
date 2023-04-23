@@ -1,5 +1,7 @@
-import Image from "next/image";
+import React from 'react';
 import { SignOutButton } from "@/components/Auth";
+import "./header.css";
+import Image from 'next/image';
 
 const Header = () => {
   return (
@@ -12,12 +14,13 @@ const Header = () => {
       }}
     >
       <Image
-        //src={logo} // replace with your logo image source
+        src={Image[0]} // replace with your logo image source
         alt="Logo"
         width={40}
         height={40}
+        className="logo-img"
       />
-      <h1>Study Buddy</h1>
+      <h1 className="top-header">Study Buddy</h1>
       <SignOutButton />
     </header>
   );

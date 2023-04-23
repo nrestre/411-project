@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
-    "build:local":"npm run prisma:generate && next build",
+    "build:local": "npm run prisma:generate && next build",
     "start": "next start",
     "lint": "next lint",
     "prisma:generate": "dotenv -e .env.local -- npx prisma generate",
@@ -18,7 +18,7 @@
     "@react-google-maps/api": "^2.18.1",
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
-    "next": "13.2.4",
+    "next": "^13.3.1",
     "next-auth": "^4.22.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
