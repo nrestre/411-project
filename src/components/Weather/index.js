@@ -24,8 +24,8 @@ const Weather = () => {
         />
       ) : (
         <>
-          <div>Temp: {data.main.temp} F</div>
-          <div>Feels like: {data.main.feels_like} F</div>
+          <div className="temperature" >Temp: {data.main.temp} F</div>
+          <div className="feel-like" >Feels like: {data.main.feels_like} F</div>
         </>
       )}
     </div>
