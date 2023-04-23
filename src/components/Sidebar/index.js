@@ -1,10 +1,10 @@
 import React from "react";
+import "./sidebar.css";
 
 const SideBar = () => {
   return (
     <div style={{ width: "200px", backgroundColor: "#f0f0f0" }}>
-      <h2>Side Menu</h2>
-      <ul style={{ listStyle: "none", padding: 0 }}>
+      <ul style={{ listStyle: "none", padding: 0, marginTop: "1rem" }}>
         <li
           style={{
             padding: "8px",
