@@ -20,6 +20,7 @@ export const authOptions = {
       if (account.provider === "google") {
         return profile.email_verified && profile.email.endsWith("@bu.edu");
       }
+      
       return true;
     },
     async session({ token, session }) {
