@@ -18,7 +18,11 @@ const Weather = () => {
       <h1 className="header-weather" >Current Weather</h1>
       <h2 className="location" >Boston University</h2>
       {isLoading ? (
-        <SyncLoader color="#36d7b7" aria-label="Loading Spinner" />
+        <SyncLoader
+          color="#36d7b7"
+          aria-label="Loading Spinner"
+          speedMultiplier={1.2}
+        />
       ) : (
         <>
           <div className="temperature" >Temp: {data.main.temp} F</div>
