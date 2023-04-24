@@ -121,7 +121,7 @@ const Map = () => {
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: 'AlzaSyAe1MRcRPcgzwYaCJe9p5SBBA6-ft4xYUc',
+    googleMapsApiKey: process.env.GOOGLE_MAPS_KEY,
   });
 
   return isLoaded ? (
