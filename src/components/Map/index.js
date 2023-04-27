@@ -9,11 +9,12 @@ import {
 import { useState } from "react";
 
 const Map = ({ locations }) => {
+  const [infowindow, setInfowindow] = useState(new Set());
+
   const { isLoaded, loadError } = useJsApiLoader({
+    // even though this is public, it is restricted to only be used by the domain
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
   });
-
-  const [infowindow, setInfowindow] = useState(null);
 
   const containerStyle = {
     width: "75%",
@@ -27,11 +28,11 @@ const Map = ({ locations }) => {
   };
 
   const handleToggleOpen = (id) => {
-    if (infowindow === id) {
-      setInfowindow(null);
-    } else {
-      setInfowindow(id);
-    }
+    setInfowindow((prevSet) => {
+      const newSet = new Set(prevSet);
+      newSet.has(id) ? newSet.delete(id) : newSet.add(id);
+      return newSet;
+    });
   };
 
   if (loadError) return <div>Map cannot be loaded right now, sorry.</div>;
@@ -42,7 +43,7 @@ const Map = ({ locations }) => {
         id="study-buddy"
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={16}
+        zoom={15}
       >
         {locations.map((location) => (
           <Marker
@@ -53,7 +54,7 @@ const Map = ({ locations }) => {
               handleToggleOpen(location.id);
             }}
           >
-            {infowindow === location.id && (
+            {infowindow.has(location.id) && (
               <InfoWindow key={`infowindow-${location.id}`}>
                 <>
                   <h1>{location.name}</h1>
