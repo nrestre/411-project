@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import styles from "@/app/page.module.css";
+import "./style.css";
 import Header from "@/components/Header";
 import SideBar from "@/components/Sidebar";
 import Weather from "@/components/Weather";
@@ -16,18 +16,11 @@ export default async function Dashboard() {
     notFound();
   }
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
-    >
+    <div className="dashboard-container">
       <Header />
-      <div style={{ display: "flex", flex: 1 }}>
-        <SideBar />
-        <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-          <Weather />
-          <Map />
-          <List />
-        </div>
-      </div>
+      <Weather />
+      <Map />
+      <List />
     </div>
   );
 }
