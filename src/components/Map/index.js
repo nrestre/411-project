@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import {
   GoogleMap,
   LoadScript,
@@ -12,8 +11,9 @@ import Image from "next/image";
 
 const Map = () => {
   const containerStyle = {
-    width: "100%",
+    width: "75%",
     height: "500px",
+    alignSelf: "center",
   };
 
   const center = {
@@ -27,9 +27,6 @@ const Map = () => {
       location: {
         lat: 42.3505,
         lng: -71.1054,
-      },
-      icon: {
-        src: Image[0],
       },
     },
     {
@@ -130,18 +127,18 @@ const Map = () => {
     googleMapsApiKey: process.env.MAPS_API_KEY,
   });
 
-  return isLoaded ? (
-    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={16}>
-      {locations.map((location) => (
-        <Marker
-          key={location.name}
-          position={location.location}
-          label={location.name}
-        />
-      ))}
-    </GoogleMap>
-  ) : (
-    <></>
+  return (
+    isLoaded && (
+      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={16}>
+        {locations.map((location) => (
+          <Marker
+            key={location.name}
+            position={location.location}
+            label={location.name}
+          />
+        ))}
+      </GoogleMap>
+    )
   );
 };
 

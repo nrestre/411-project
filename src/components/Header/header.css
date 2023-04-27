@@ -1,9 +1,16 @@
-.logo-img {
-    margin-left: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+.header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.top-header {
-    margin-left: 2rem;
+.logo-img {
+    margin: 1rem;
+}
+
+.title {
+    margin: 0 1rem;
 }

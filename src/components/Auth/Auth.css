@@ -5,11 +5,7 @@
     font-size: 18px; /* Example font size */
     border: none; /* Remove button border */
     cursor: pointer;
-    margin-right: 1.5rem;
-    margin-bottom: 1.5rem;
-    margin-top: 1.5rem;
-    right: 0;
-    position: absolute;
+    margin: 1rem;
 }
 
 .auth-button:hover {

@@ -1,18 +1,7 @@
-.header-weather {
-    margin-left: 1rem;
-    margin-top: 1rem;
-}
-
-.location{
-    margin-left: 1rem;
-}
-
-.temperature {
-    margin-left: 1rem;
-    margin-top: 1rem;
-}
-
-.feel-like {
-    margin-left: 1rem;
-    margin-bottom: 1rem;
+.weather-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
 }
