@@ -2,14 +2,19 @@
 
 import {
   GoogleMap,
-  LoadScript,
-  Marker,
-  useGoogleMap,
   useJsApiLoader,
+  Marker,
+  InfoWindow,
 } from "@react-google-maps/api";
-import Image from "next/image";
+import { useState } from "react";
 
-const Map = () => {
+const Map = ({ locations }) => {
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
+  });
+
+  const [infowindow, setInfowindow] = useState(null);
+
   const containerStyle = {
     width: "75%",
     height: "500px",
@@ -21,121 +26,44 @@ const Map = () => {
     lng: -71.1054,
   };
 
-  const locations = [
-    {
-      name: "BU",
-      location: {
-        lat: 42.3505,
-        lng: -71.1054,
-      },
-    },
-    {
-      name: "Data Science",
-      location: {
-        lat: 42.34992,
-        lng: -71.10317,
-      },
-    },
-    {
-      name: "GSU",
-      location: {
-        lat: 42.35067,
-        lng: -71.10898,
-      },
-    },
-    {
-      name: "Mugar",
-      location: {
-        lat: 42.35097,
-        lng: -71.10789,
-      },
-    },
-    {
-      name: "Law Building",
-      location: {
-        lat: 42.35114,
-        lng: -71.10715,
-      },
-    },
-    {
-      name: "CGS",
-      location: {
-        lat: 42.3512,
-        lng: -71.11394,
-      },
-    },
-    {
-      name: "Howard Thurman",
-      location: {
-        lat: 42.35024,
-        lng: -71.11154,
-      },
-    },
-    {
-      name: "Questrom",
-      location: {
-        lat: 42.34967,
-        lng: -71.09954,
-      },
-    },
-    {
-      name: "Marciano",
-      location: {
-        lat: 42.34972,
-        lng: -71.09775,
-      },
-    },
-    {
-      name: "Metcalf",
-      location: {
-        lat: 42.34846,
-        lng: -71.10026,
-      },
-    },
-    {
-      name: "Photonics",
-      location: {
-        lat: 42.34913,
-        lng: -71.1058,
-      },
-    },
-    {
-      name: "Warren",
-      location: {
-        lat: 42.34933,
-        lng: -71.10402,
-      },
-    },
-    {
-      name: "Stuvi 1",
-      location: {
-        lat: 42.35237,
-        lng: -71.11587,
-      },
-    },
-    {
-      name: "Ian's spot",
-      location: {
-        lat: 42.35306,
-        lng: -71.11779,
-      },
-    },
-  ];
+  const handleToggleOpen = (id) => {
+    if (infowindow === id) {
+      setInfowindow(null);
+    } else {
+      setInfowindow(id);
+    }
+  };
 
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: process.env.MAPS_API_KEY,
-  });
+  if (loadError) return <div>Map cannot be loaded right now, sorry.</div>;
 
   return (
     isLoaded && (
-      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={16}>
+      <GoogleMap
+        id="study-buddy"
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={16}
+      >
         {locations.map((location) => (
           <Marker
-            key={location.name}
-            position={location.location}
-            label={location.name}
-          />
+            key={`marker-${location.id}`}
+            title={location.name}
+            position={{ lat: location.lat, lng: location.long }}
+            onClick={() => {
+              handleToggleOpen(location.id);
+            }}
+          >
+            {infowindow === location.id && (
+              <InfoWindow key={`infowindow-${location.id}`}>
+                <>
+                  <h1>{location.name}</h1>
+                  <h2>{location.description}</h2>
+                  <h3>Noise Level: {location.noise_level}/5</h3>
+                  <h3>Crowd Level: {location.crowd_level}/5</h3>
+                </>
+              </InfoWindow>
+            )}
+          </Marker>
         ))}
       </GoogleMap>
     )

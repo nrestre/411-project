@@ -5,8 +5,6 @@ import Image from "next/image";
 
 import "./header.css";
 import { SignOutButton } from "@/components/Auth";
-import "./header.css";
-import Image from 'next/image';
 
 const Header = () => {
   const [ratio, setRatio] = useState(16 / 9);

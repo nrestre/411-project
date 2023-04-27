@@ -12,4 +12,5 @@ if (process.env.NODE_ENV === "production") {
   prisma = cachedPrisma;
 }
 
-export const db = prisma;
+const db = prisma;
+export default db;
