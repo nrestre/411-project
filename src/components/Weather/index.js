@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { SyncLoader } from "react-spinners";
 import { fetcher } from "@/lib/helpers";
 
-import "./weather.css";
+import styles from "./Weather.module.css";
 
 const Weather = () => {
   const { data, error, isLoading } = useSWR("/api/weather", fetcher, {
@@ -13,7 +13,7 @@ const Weather = () => {
   });
   if (error) return notFound();
   return (
-    <div className="weather-container">
+    <div className={styles.weatherContainer}>
       <h1>Current Weather</h1>
       <h2>Boston University</h2>
       {isLoading ? (
@@ -24,8 +24,8 @@ const Weather = () => {
         />
       ) : (
         <>
-          <div className="temperature">Temp: {data.main.temp} F</div>
-          <div className="feel-like">Feels like: {data.main.feels_like} F</div>
+          <div>Temp: {data.main.temp} F</div>
+          <div>Feels like: {data.main.feels_like} F</div>
         </>
       )}
     </div>

@@ -9,7 +9,7 @@ import {
 import { useState } from "react";
 
 const Map = ({ locations }) => {
-  const [infowindow, setInfowindow] = useState(new Set());
+  const [infowindow, setInfowindow] = useState(null);
 
   const { isLoaded, loadError } = useJsApiLoader({
     // even though this is public, it is restricted to only be used by our domain
@@ -28,10 +28,11 @@ const Map = ({ locations }) => {
   };
 
   const handleToggleOpen = (id) => {
-    setInfowindow((prevSet) => {
-      const newSet = new Set(prevSet);
-      newSet.has(id) ? newSet.delete(id) : newSet.add(id);
-      return newSet;
+    setInfowindow((prev) => {
+      if (prev === id) {
+        return null;
+      }
+      return id;
     });
   };
 
@@ -54,7 +55,7 @@ const Map = ({ locations }) => {
               handleToggleOpen(location.id);
             }}
           >
-            {infowindow.has(location.id) && (
+            {infowindow === location.id && (
               <InfoWindow key={`infowindow-${location.id}`}>
                 <>
                   <h1>{location.name}</h1>

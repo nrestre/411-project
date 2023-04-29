@@ -1,32 +1,52 @@
+"use client";
+
 import { useMemo } from "react";
 import { useTable } from "react-table";
 
+import styles from "./List.module.css";
+import Table from "@/components/Table";
+import Styles from "@/components/Styles";
+
 export default function List({ locations }) {
-  const keys = Object.keys(locations[0])
   const columns = useMemo(
-    () =>
-      Object.keys(locations)
-        .slice(1)
-        .map((key) => ({
-          Header: key,
-          accessor: key,
-        })),
-    [locations]
+    () => [
+      {
+        Header: "Name",
+        accessor: "name",
+      },
+      {
+        Header: "Distance",
+        accessor: "distance",
+      },
+      {
+        Header: "Noise Level",
+        accessor: "noiseLevel",
+      },
+      {
+        Header: "Crowd Level",
+        accessor: "crowdLevel",
+      },
+    ],
+    []
   );
 
   const data = useMemo(
-    () => locations.map((location) => Object.values(location).slice(1)),
+    () =>
+      locations.map((location) => ({
+        name: location.name,
+        distance: 0,
+        noiseLevel: location.noise_level,
+        crowdLevel: location.crowd_level,
+      })),
     [locations]
   );
 
   return (
-    <div>
+    <div className={styles.listContainer}>
       <h1>Study Location List</h1>
-      {locations.map((location) => (
-        <div key={location.id}>
-          <p>{location.name}</p>
-        </div>
-      ))}
+      <Styles>
+        <Table columns={columns} data={data} />
+      </Styles>
     </div>
   );
 }
