@@ -12,7 +12,7 @@ const Map = ({ locations }) => {
   const [infowindow, setInfowindow] = useState(new Set());
 
   const { isLoaded, loadError } = useJsApiLoader({
-    // even though this is public, it is restricted to only be used by the domain
+    // even though this is public, it is restricted to only be used by our domain
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
   });
 

@@ -14,12 +14,16 @@ async function getLocations() {
   return locations;
 }
 
+async function getCurrentLocation() {}
+
 export default async function Dashboard() {
   const user = await getCurrentUser();
   if (!user) {
     return notFound();
   }
   const locations = await getLocations();
+  const currentLocation = await getCurrentLocation();
+
   return (
     <div className="dashboard-container">
       <Header />

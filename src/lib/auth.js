@@ -1,6 +1,5 @@
-import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import GoogleProvider from "next-auth/providers/google";
 
 import db from "@/lib/db";
 
@@ -20,7 +19,7 @@ export const authOptions = {
       if (account.provider === "google") {
         return profile.email_verified && profile.email.endsWith("@bu.edu");
       }
-      
+
       return true;
     },
     async session({ token, session }) {
@@ -56,5 +55,3 @@ export const authOptions = {
     },
   },
 };
-
-export default NextAuth(authOptions);
