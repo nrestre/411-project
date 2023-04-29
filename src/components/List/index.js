@@ -30,9 +30,7 @@ export default function List({ locations, pos }) {
     ],
     []
   );
-
-  console.log(locations, pos);
-
+  
   const data = useMemo(
     () =>
       locations?.map((location) => {
