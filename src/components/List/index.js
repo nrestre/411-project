@@ -6,7 +6,7 @@ import { useTable } from "react-table";
 import styles from "./List.module.css";
 import Table from "@/components/Table";
 import Styles from "@/components/Styles";
-import { HaversineDistanceInMiles as HaversineDistanceInMiles } from "@/lib/helpers";
+import { HaversineDistanceInMiles } from "@/lib/helpers";
 
 export default function List({ locations, pos }) {
   const columns = useMemo(
@@ -35,17 +35,20 @@ export default function List({ locations, pos }) {
 
   const data = useMemo(
     () =>
-      locations?.map((location) => ({
-        name: location.name,
-        distance: HaversineDistanceInMiles(
+      locations?.map((location) => {
+        const distance = HaversineDistanceInMiles(
           pos?.lat,
           pos?.lng,
           location.lat,
           location.long
-        ),
-        noiseLevel: location.noise_level,
-        crowdLevel: location.crowd_level,
-      })),
+        );
+        return {
+          name: location.name,
+          distance: distance ? distance : "...",
+          noiseLevel: location.noise_level,
+          crowdLevel: location.crowd_level,
+        };
+      }),
     [locations, pos]
   );
 
