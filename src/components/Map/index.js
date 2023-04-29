@@ -8,7 +8,7 @@ import {
 } from "@react-google-maps/api";
 import { useState } from "react";
 
-const Map = ({ locations }) => {
+const Map = ({ locations, pos }) => {
   const [infowindow, setInfowindow] = useState(null);
 
   const { isLoaded, loadError } = useJsApiLoader({
@@ -44,9 +44,9 @@ const Map = ({ locations }) => {
         id="study-buddy"
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={15}
+        zoom={16}
       >
-        {locations.map((location) => (
+        {locations?.map((location) => (
           <Marker
             key={`marker-${location.id}`}
             title={location.name}
@@ -67,6 +67,17 @@ const Map = ({ locations }) => {
             )}
           </Marker>
         ))}
+        <Marker
+          position={pos}
+          icon={{
+            fillColor: `#4285F4`,
+            fillOpacity: 1,
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 8,
+            strokeColor: `rgb(255,255,255)`,
+            strokeWeight: 2,
+          }}
+        />
       </GoogleMap>
     )
   );
