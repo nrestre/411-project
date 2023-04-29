@@ -1,13 +1,13 @@
-.auth-button {
+.authButton {
     padding: 12px 24px; /* Add padding to button */
     background-color: #007bff; /* Example background color */
     color: #fff; /* Example text color */
     font-size: 18px; /* Example font size */
     border: none; /* Remove button border */
     cursor: pointer;
-    margin: 1rem;
+    margin: 0 1rem;
 }
 
-.auth-button:hover {
+.authButton:hover {
     background-color: #0056b3; /* Example hover background color */
 }

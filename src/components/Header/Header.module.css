@@ -1,4 +1,4 @@
-.header {
+.headerContainer {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -7,7 +7,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.logo-img {
+.logoImg {
     margin: 1rem;
 }
 

@@ -8,11 +8,11 @@ import {
 } from "@react-google-maps/api";
 import { useState } from "react";
 
-const Map = ({ locations }) => {
-  const [infowindow, setInfowindow] = useState(new Set());
+const Map = ({ locations, pos }) => {
+  const [infowindow, setInfowindow] = useState(null);
 
   const { isLoaded, loadError } = useJsApiLoader({
-    // even though this is public, it is restricted to only be used by the domain
+    // even though this is public, it is restricted to only be used by our domain
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
   });
 
@@ -28,10 +28,11 @@ const Map = ({ locations }) => {
   };
 
   const handleToggleOpen = (id) => {
-    setInfowindow((prevSet) => {
-      const newSet = new Set(prevSet);
-      newSet.has(id) ? newSet.delete(id) : newSet.add(id);
-      return newSet;
+    setInfowindow((prev) => {
+      if (prev === id) {
+        return null;
+      }
+      return id;
     });
   };
 
@@ -43,9 +44,9 @@ const Map = ({ locations }) => {
         id="study-buddy"
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={15}
+        zoom={16}
       >
-        {locations.map((location) => (
+        {locations?.map((location) => (
           <Marker
             key={`marker-${location.id}`}
             title={location.name}
@@ -54,7 +55,7 @@ const Map = ({ locations }) => {
               handleToggleOpen(location.id);
             }}
           >
-            {infowindow.has(location.id) && (
+            {infowindow === location.id && (
               <InfoWindow key={`infowindow-${location.id}`}>
                 <>
                   <h1>{location.name}</h1>
@@ -66,6 +67,17 @@ const Map = ({ locations }) => {
             )}
           </Marker>
         ))}
+        <Marker
+          position={pos}
+          icon={{
+            fillColor: `#4285F4`,
+            fillOpacity: 1,
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 8,
+            strokeColor: `rgb(255,255,255)`,
+            strokeWeight: 2,
+          }}
+        />
       </GoogleMap>
     )
   );

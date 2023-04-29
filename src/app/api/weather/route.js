@@ -4,11 +4,7 @@ const zip = "02215";
 const country = "US";
 const api_key = process.env.OPENWEATHER_API_KEY;
 
-export const config = {
-  runtime: "edge",
-};
-
-export default async function handler(req, res) {
+export async function GET() {
   const locationResponse = await fetch(
     `http://api.openweathermap.org/geo/1.0/zip?zip=${zip},${country}&appid=${api_key}`
   );

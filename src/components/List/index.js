@@ -1,12 +1,60 @@
-export default function List({locations}) {
+"use client";
+
+import { useMemo } from "react";
+import { useTable } from "react-table";
+
+import styles from "./List.module.css";
+import Table from "@/components/Table";
+import Styles from "@/components/Styles";
+import { HaversineDistanceInMiles as HaversineDistanceInMiles } from "@/lib/helpers";
+
+export default function List({ locations, pos }) {
+  const columns = useMemo(
+    () => [
+      {
+        Header: "Name",
+        accessor: "name",
+      },
+      {
+        Header: "Distance",
+        accessor: "distance",
+      },
+      {
+        Header: "Noise Level",
+        accessor: "noiseLevel",
+      },
+      {
+        Header: "Crowd Level",
+        accessor: "crowdLevel",
+      },
+    ],
+    []
+  );
+
+  console.log(locations, pos);
+
+  const data = useMemo(
+    () =>
+      locations?.map((location) => ({
+        name: location.name,
+        distance: HaversineDistanceInMiles(
+          pos?.lat,
+          pos?.lng,
+          location.lat,
+          location.long
+        ),
+        noiseLevel: location.noise_level,
+        crowdLevel: location.crowd_level,
+      })),
+    [locations, pos]
+  );
+
   return (
-    <div>
+    <div className={styles.listContainer}>
       <h1>Study Location List</h1>
-      {locations.map((location) => (
-        <div key={location.id}>
-          <p>{location.name}</p>
-        </div>
-      ))}
+      <Styles>
+        <Table columns={columns} data={data} />
+      </Styles>
     </div>
   );
 }

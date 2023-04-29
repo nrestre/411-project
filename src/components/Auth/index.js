@@ -4,13 +4,13 @@ import { useState } from "react";
 import { signIn, signOut } from "next-auth/react";
 import { ClipLoader } from "react-spinners";
 
-import "./Auth.css";
+import styles from "./Auth.module.css";
 
 export function LoginButton() {
   const [loading, setLoading] = useState(false);
   return (
     <button
-      className="auth-button"
+      className={styles.authButton}
       type="button"
       onClick={() => {
         setLoading(true);
@@ -26,7 +26,7 @@ export function SignOutButton() {
   const [loading, setLoading] = useState(false);
   return (
     <button
-      className="auth-button"
+      className={styles.authButton}
       type="button"
       onClick={() => {
         setLoading(true);
