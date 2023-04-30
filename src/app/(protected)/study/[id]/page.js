@@ -30,8 +30,8 @@ export default function Study({ params }) {
     }
     mutate({
       ...study,
-      noiseLevel: res.noiseLevel,
-      crowdLevel: res.crowdLevel,
+      noise_level: res.noise_level,
+      crowd_level: res.crowd_level,
     });
   };
 
