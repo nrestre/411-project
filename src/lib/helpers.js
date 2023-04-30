@@ -18,3 +18,7 @@ export const HaversineDistanceInMiles = (lat1, lon1, lat2, lon2) => {
 function deg2rad(deg) {
   return deg * (Math.PI / 180);
 }
+
+export const sleep = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
