@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import styles from "./Header.module.css";
 import { SignOutButton } from "@/components/Auth";
@@ -20,7 +21,9 @@ const Header = () => {
           setRatio(naturalWidth / naturalHeight)
         }
       />
-      <h1 className={styles.title}>Study Buddy</h1>
+      <Link href="/dashboard">
+        <h1 className={styles.title}>Study Buddy</h1>
+      </Link>
       <SignOutButton />
     </header>
   );

@@ -27,7 +27,7 @@ const Map = ({ locations, pos }) => {
     lng: -71.1054,
   };
 
-  const handleToggleOpen = (id) => {
+  const handleToggle = (id) => {
     setInfowindow((prev) => {
       if (prev === id) {
         return null;
@@ -52,11 +52,16 @@ const Map = ({ locations, pos }) => {
             title={location.name}
             position={{ lat: location.lat, lng: location.long }}
             onClick={() => {
-              handleToggleOpen(location.id);
+              handleToggle(location.id);
             }}
           >
             {infowindow === location.id && (
-              <InfoWindow key={`infowindow-${location.id}`}>
+              <InfoWindow
+                key={`infowindow-${location.id}`}
+                onCloseClick={() => {
+                  handleToggle(location.id);
+                }}
+              >
                 <>
                   <h1>{location.name}</h1>
                   <h2>{location.description}</h2>
