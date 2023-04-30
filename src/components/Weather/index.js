@@ -24,8 +24,8 @@ const Weather = () => {
         />
       ) : (
         <>
-          <div>Temp: {data.main.temp} F</div>
-          <div>Feels like: {data.main.feels_like} F</div>
+          <div>Temp: {+data.main.temp.toFixed(1)} F</div>
+          <div>Feels like: {+data.main.feels_like.toFixed(1)} F</div>
         </>
       )}
     </div>
