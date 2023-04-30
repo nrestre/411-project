@@ -5,7 +5,7 @@ import { useMemo } from "react";
 import styles from "./List.module.css";
 import Table from "@/components/Table";
 import Styles from "@/components/Styles";
-import { HaversineDistanceInMiles as HaversineDistanceInMiles } from "@/lib/helpers";
+import { HaversineDistanceInMiles } from "@/lib/helpers";
 
 export default function List({ locations, pos }) {
   const columns = useMemo(
@@ -29,9 +29,7 @@ export default function List({ locations, pos }) {
     ],
     []
   );
-
-  console.log(locations, pos);
-
+  
   const data = useMemo(
     () =>
       locations?.map((location) => {
