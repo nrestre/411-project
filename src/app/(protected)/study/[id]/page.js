@@ -27,7 +27,9 @@ export default function Study({ params }) {
     const res = await data.json();
     if (res.error) {
       toast.error(res.error);
+      return;
     }
+    toast.success("Successfully submitted!");
     mutate({
       ...study,
       noise_level: res.noise_level,
@@ -40,8 +42,10 @@ export default function Study({ params }) {
       <Header />
       <div className={styles.studyContainer}>
         {study && <div>My Study Area: {study.name}</div>}
+        {/* TODO: create form */}
+        <button onClick={() => handleSubmit(3, 3)}>Submit</button>
+        <ToastContainer position="bottom-center" />
       </div>
-      <ToastContainer position="bottom-center" theme="dark" />
     </>
   );
 }

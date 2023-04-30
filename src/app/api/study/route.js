@@ -1,39 +1,59 @@
 import { NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
 
 import db from "@/lib/db";
 
-export async function GET(request) {
-  const { searchParams } = new URL(request.url);
+export async function GET(req) {
+  const { searchParams } = new URL(req.url);
   const id = searchParams.get("id");
+
   if (!id) {
-    return NextResponse.json({ error: "Missing id" }, { status: 400 });
+    const locations = await db.study.findMany();
+    return NextResponse.json(locations);
   }
+
   const location = await db.study.findUnique({
     where: {
       id: Number(id),
     },
   });
+
+  if (!location) {
+    return NextResponse.json({ error: "Location not found" }, { status: 404 });
+  }
+
   return NextResponse.json(location);
 }
 
-export async function POST(request) {
-  const { searchParams } = new URL(request.url);
+export async function POST(req) {
+  const token = await getToken({ req });
+  if (!token) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { searchParams } = new URL(req.url);
   const id = searchParams.get("id");
   if (!id) {
     return NextResponse.json({ error: "Missing id" }, { status: 400 });
   }
-  const { crowdLevel, noiseLevel } = await request.json();
+
+  const { crowdLevel, noiseLevel } = await req.json();
   if (!crowdLevel && !noiseLevel) {
     return NextResponse.json(
       { error: "Missing crowdLevel and noiseLevel" },
       { status: 400 }
     );
   }
+
   const location = await db.study.findUnique({
     where: {
       id: Number(id),
     },
   });
+  if (!location) {
+    return NextResponse.json({ error: "Location not found" }, { status: 404 });
+  }
+
   const updatedLocation = await db.study.update({
     where: {
       id: Number(id),
@@ -43,5 +63,6 @@ export async function POST(request) {
       noise_level: (location.noise_level + noiseLevel) / 2,
     },
   });
+
   return NextResponse.json(updatedLocation);
 }

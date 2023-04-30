@@ -17,7 +17,7 @@ export function LoginButton() {
         signIn("google", { callbackUrl: "/dashboard" });
       }}
     >
-      {loading ? <ClipLoader speedMultiplier={1.5} /> : "Login"}
+      {loading ? <ClipLoader speedMultiplier={1.5} color="white" /> : "Login"}
     </button>
   );
 }
@@ -33,7 +33,11 @@ export function SignOutButton() {
         signOut({ callbackUrl: "/" });
       }}
     >
-      {loading ? <ClipLoader speedMultiplier={1.5} /> : "Sign out"}
+      {loading ? (
+        <ClipLoader speedMultiplier={1.5} color="white" />
+      ) : (
+        "Sign out"
+      )}
     </button>
   );
 }

@@ -7,7 +7,7 @@ import Styles from "./styles";
 import Table from "@/components/Table";
 import { HaversineDistanceInMiles } from "@/lib/helpers";
 
-export default function List({ locations, pos }) {
+export default function List({ locations, pos, changeHighlight }) {
   const columns = useMemo(
     () => [
       {
@@ -43,8 +43,8 @@ export default function List({ locations, pos }) {
           id: location.id,
           name: location.name,
           distance: distance ? distance : "...",
-          noiseLevel: location.noise_level,
-          crowdLevel: location.crowd_level,
+          noiseLevel: +location.noise_level.toFixed(1),
+          crowdLevel: +location.crowd_level.toFixed(1),
         };
       }),
     [locations, pos]
@@ -54,7 +54,7 @@ export default function List({ locations, pos }) {
     <div className={styles.listContainer}>
       <h1>Study Location List</h1>
       <Styles>
-        <Table columns={columns} data={data} />
+        <Table columns={columns} data={data} onHover={changeHighlight} />
       </Styles>
     </div>
   );

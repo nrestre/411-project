@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 
 import styles from "./Table.module.css";
 
-export default function Table({ columns, data }) {
+export default function Table({ columns, data, onHover }) {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable(
       { columns, data, initialState: { sortBy: [{ id: "distance" }] } },
@@ -51,6 +51,8 @@ export default function Table({ columns, data }) {
               {...restRowProps}
               className={styles.clickable}
               onClick={() => router.push(`/study/${row.original.id}`)}
+              onMouseEnter={() => onHover(row.original.id)}
+              onMouseLeave={() => onHover(null)}
             >
               {row.cells.map((cell) => {
                 const { key, ...restCellProps } = cell.getCellProps();

@@ -1,3 +1,4 @@
+/*global google*/
 "use client";
 
 import {
@@ -8,7 +9,7 @@ import {
 } from "@react-google-maps/api";
 import { useState } from "react";
 
-const Map = ({ locations, pos }) => {
+const Map = ({ locations, pos, highlight }) => {
   const [infowindow, setInfowindow] = useState(null);
 
   const { isLoaded, loadError } = useJsApiLoader({
@@ -55,7 +56,7 @@ const Map = ({ locations, pos }) => {
               handleToggle(location.id);
             }}
           >
-            {infowindow === location.id && (
+            {(infowindow === location.id || highlight === location.id) && (
               <InfoWindow
                 key={`infowindow-${location.id}`}
                 onCloseClick={() => {
@@ -65,8 +66,8 @@ const Map = ({ locations, pos }) => {
                 <>
                   <h1>{location.name}</h1>
                   <h2>{location.description}</h2>
-                  <h3>Noise Level: {location.noise_level}/5</h3>
-                  <h3>Crowd Level: {location.crowd_level}/5</h3>
+                  <h3>Noise Level: {+location.noise_level.toFixed(1)}/5</h3>
+                  <h3>Crowd Level: {+location.crowd_level.toFixed(1)}/5</h3>
                 </>
               </InfoWindow>
             )}
