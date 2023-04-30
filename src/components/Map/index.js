@@ -1,10 +1,17 @@
 "use client";
 
-import React from 'react';
-import { GoogleMap, LoadScript, Marker, useGoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import React, { useState } from 'react';
+import { GoogleMap, LoadScript, Marker, InfoWindow, useGoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import Image from 'next/image'
 
 const Map = () => {
+
+  const [openedInfoWindow, setOpenedInfoWindow] = useState(null);
+
+  const onMarkerClick = (location) => {
+    setOpenedInfoWindow(location.name);
+  };
+
   const containerStyle = {
     width: '100%',
     height: '500px'
@@ -121,17 +128,33 @@ const Map = () => {
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.GOOGLE_MAPS_KEY,
+    googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
   });
 
   return isLoaded ? (
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={16}>
         {locations.map((location) => (
+            <React.Fragment key={location.name}>
             <Marker
-                key={location.name}
                 position={location.location}
                 label={location.name}
+                onClick={() => onMarkerClick(location)}
             />
+              {openedInfoWindow === location.name && (
+                  <InfoWindow
+                      position={location.location}
+                      onCloseClick={() => setOpenedInfoWindow(null)}
+                  >
+                    <div>
+                      <h4>{location.name}</h4>
+                      <body>{location.description}</body>
+                      <body>Noise level: {location.noise_level}</body>
+                      <body>Crowd level: {location.crowd_level}</body>
+                      <body>Updated: {location.last_update}</body>
+                    </div>
+                  </InfoWindow>
+              )}
+            </React.Fragment>
         ))}
       </GoogleMap>
   ) : (
