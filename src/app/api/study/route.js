@@ -25,8 +25,8 @@ export async function POST(request) {
   const { crowdLevel, noiseLevel } = await request.json();
   if (!crowdLevel && !noiseLevel) {
     return NextResponse.json(
-      { error: "Missing crowdLevel and noiseLevel" },
-      { status: 400 }
+        { error: "Missing crowdLevel and noiseLevel" },
+        { status: 400 }
     );
   }
   const location = await db.study.findUnique({

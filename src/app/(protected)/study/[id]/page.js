@@ -36,12 +36,12 @@ export default function Study({ params }) {
   };
 
   return (
-    <>
-      <Header />
-      <div className={styles.studyContainer}>
-        {study && <div>My Study Area: {study.name}</div>}
-      </div>
-      <ToastContainer position="bottom-center" theme="dark" />
-    </>
+      <>
+        <Header />
+        <div className={styles.studyContainer}>
+          {study && <div>My Study Area: {study.name}</div>}
+        </div>
+        <ToastContainer position="bottom-center" theme="dark" />
+      </>
   );
 }
