@@ -6,12 +6,12 @@ const api_key = process.env.OPENWEATHER_API_KEY;
 
 export async function GET() {
   const locationResponse = await fetch(
-    `http://api.openweathermap.org/geo/1.0/zip?zip=${zip},${country}&appid=${api_key}`
+      `http://api.openweathermap.org/geo/1.0/zip?zip=${zip},${country}&appid=${api_key}`
   );
   const locationData = await locationResponse.json();
   const { lat, lon } = locationData;
   const weatherResponse = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${api_key}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${api_key}`
   );
   const weatherData = await weatherResponse.json();
   return NextResponse.json(weatherData);
