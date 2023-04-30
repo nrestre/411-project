@@ -12,6 +12,24 @@ const Map = ({ locations, pos }) => {
     const [infowindow, setInfowindow] = useState(null);
     const [showPopup, setShowPopup] = useState(false);
     const [locationToUpdate, setLocation] = useState(null);
+    const [noiseLevel, setNoiseLevel] = useState('');
+    const [crowdLevel, setCrowdLevel] = useState('');
+
+    const handleNoiseLevelChange = (event) => {
+        setNoiseLevel(event.target.value);
+    };
+
+    const handleCrowdLevelChange = (event) => {
+        setCrowdLevel(event.target.value);
+    };
+
+    const handleSave = () => {
+        /** Update noise and crowd level for the location.
+         *  The location is in locationToUpdate (state variable, you can just extract the ID from it).
+         *  The new noise level is in noiseLevel (state variable)
+         *  The new crowd level is in crowdLevel (state variable)
+         */
+    };
 
     const { isLoaded, loadError } = useJsApiLoader({
         // even though this is public, it is restricted to only be used by our domain
@@ -66,6 +84,7 @@ const Map = ({ locations, pos }) => {
                         type="text"
                         id="noiseLevel"
                         name="noiseLevel"
+                        onChange={handleNoiseLevelChange}
                         style={{
                             marginTop: "10px",
                             display: "block",
@@ -86,6 +105,7 @@ const Map = ({ locations, pos }) => {
                         type="text"
                         id="crowdLevel"
                         name="crowdLevel"
+                        onChange={handleCrowdLevelChange}
                         style={{
                             display: "block",
                             width: "100%",
@@ -107,6 +127,7 @@ const Map = ({ locations, pos }) => {
                 >
                     <button
                         style={{ padding: '8px 16px', marginRight: '10px' }}
+                        onClick={handleSave}
                     >Save</button>
                     <button
                         style={{ padding: '8px 16px', marginLeft: '10px' }}
@@ -149,8 +170,8 @@ const Map = ({ locations, pos }) => {
                             >
                                 <>
                                     <h1>{location.name}</h1>
-                                    <h2>{location.description}</h2>
-                                    <h3>Noise Level: {location.noise_level}/5</h3>
+                                    <h4>{location.description}</h4>
+                                    <h3 style={{ marginTop: '10px' }}>Noise Level: {location.noise_level}/5</h3>
                                     <h3>Crowd Level: {location.crowd_level}/5</h3>
                                     <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginTop: "10px" }}>
                                         <button
