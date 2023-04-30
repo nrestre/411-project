@@ -1,3 +1,34 @@
 .studyContainer {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 4px;
+    padding: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.label {
+    flex: 0 0 auto;
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.saveButton,
+.backButton {
+    padding: 8px 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    margin: 1rem;
 }
