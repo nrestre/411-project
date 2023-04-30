@@ -13,11 +13,10 @@ import List from "@/components/List";
 import { fetcher } from "@/lib/helpers";
 
 export default function Dashboard() {
-  const {
-    data: locations,
-    error,
-    isLoading: isLocationsLoading,
-  } = useSWR("/api/locations", fetcher);
+  const { data: locations, isLoading: isLocationsLoading } = useSWR(
+    "/api/locations",
+    fetcher
+  );
   const { data: position, mutate } = useSWR("geolocation", getMyLocation);
 
   useEffect(() => {

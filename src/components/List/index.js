@@ -1,11 +1,10 @@
 "use client";
 
 import { useMemo } from "react";
-import { useTable } from "react-table";
 
 import styles from "./List.module.css";
+import Styles from "./styles";
 import Table from "@/components/Table";
-import Styles from "@/components/Styles";
 import { HaversineDistanceInMiles } from "@/lib/helpers";
 
 export default function List({ locations, pos }) {
@@ -30,7 +29,7 @@ export default function List({ locations, pos }) {
     ],
     []
   );
-  
+
   const data = useMemo(
     () =>
       locations?.map((location) => {
@@ -41,6 +40,7 @@ export default function List({ locations, pos }) {
           location.long
         );
         return {
+          id: location.id,
           name: location.name,
           distance: distance ? distance : "...",
           noiseLevel: location.noise_level,
