@@ -29,28 +29,26 @@ export default function Dashboard() {
     return () => navigator.geolocation.clearWatch(id);
   }, [mutate]);
 
-  if (isLocationsLoading) {
-    return (
-      <div className={styles.dashboardContainer}>
-        <HashLoader color="#36d7b7" speedMultiplier={1.2} />
-      </div>
-    );
-  }
-
   const handleHighlight = (id) => {
     setHighlight(id);
   };
 
   return (
     <div className={styles.dashboardContainer}>
-      <Header />
-      <Weather />
-      <Map locations={locations} pos={position} highlight={highlight} />
-      <List
-        locations={locations}
-        pos={position}
-        changeHighlight={handleHighlight}
-      />
+      {isLocationsLoading ? (
+        <HashLoader color="#36d7b7" speedMultiplier={1.2} />
+      ) : (
+        <>
+          <Header />
+          <Weather />
+          <Map locations={locations} pos={position} highlight={highlight} />
+          <List
+            locations={locations}
+            pos={position}
+            changeHighlight={handleHighlight}
+          />
+        </>
+      )}
     </div>
   );
 }

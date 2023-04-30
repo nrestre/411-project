@@ -49,7 +49,7 @@ const Map = ({ locations, pos, highlight }) => {
       >
         {locations?.map((location) => (
           <Marker
-            key={`marker-${location.id}`}
+            key={location.id}
             title={location.name}
             position={{ lat: location.lat, lng: location.long }}
             onClick={() => {
@@ -58,7 +58,7 @@ const Map = ({ locations, pos, highlight }) => {
           >
             {(infowindow === location.id || highlight === location.id) && (
               <InfoWindow
-                key={`infowindow-${location.id}`}
+                position={{ lat: location.lat, lng: location.long }}
                 onCloseClick={() => {
                   handleToggle(location.id);
                 }}
