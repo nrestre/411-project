@@ -10,34 +10,31 @@ export default function Table({ columns, data, onHover }) {
       useSortBy
     );
 
-    const router = useRouter();
+  const router = useRouter();
 
-    return (
-        <table {...getTableProps()}>
-            <thead>
-            {headerGroups.map((headerGroup) => {
-                const { key, ...restHeaderGroupProps } =
-                    headerGroup.getHeaderGroupProps();
+  return (
+    <table {...getTableProps()}>
+      <thead>
+        {headerGroups.map((headerGroup) => {
+          const { key, ...restHeaderGroupProps } =
+            headerGroup.getHeaderGroupProps();
+          return (
+            <tr key={key} {...restHeaderGroupProps}>
+              {headerGroup.headers.map((column) => {
+                const { key, ...restColumn } = column.getHeaderProps(
+                  column.getSortByToggleProps()
+                );
                 return (
-                    <tr key={key} {...restHeaderGroupProps}>
-                        {headerGroup.headers.map((column) => {
-                            const { key, ...restColumn } = column.getHeaderProps(
-                                column.getSortByToggleProps()
-                            );
-                            return (
-                                <th key={key} {...restColumn}>
-                                    {column.render("Header")}
-                                    <span>
+                  <th key={key} {...restColumn}>
+                    {column.render("Header")}
+                    <span>
                       {column.isSorted
-                          ? column.isSortedDesc
-                              ? " 🔽"
-                              : " 🔼"
-                          : ""}
+                        ? column.isSortedDesc
+                          ? " 🔽"
+                          : " 🔼"
+                        : ""}
                     </span>
-                                </th>
-                            );
-                        })}
-                    </tr>
+                  </th>
                 );
               })}
             </tr>
@@ -60,24 +57,15 @@ export default function Table({ columns, data, onHover }) {
               {row.cells.map((cell) => {
                 const { key, ...restCellProps } = cell.getCellProps();
                 return (
-                    <tr
-                        key={key}
-                        {...restRowProps}
-                        className={styles.clickable}
-                        onClick={() => router.push(`/study/${row.original.id}`)}
-                    >
-                        {row.cells.map((cell) => {
-                            const { key, ...restCellProps } = cell.getCellProps();
-                            return (
-                                <td key={key} {...restCellProps}>
-                                    {cell.render("Cell")}
-                                </td>
-                            );
-                        })}
-                    </tr>
+                  <td key={key} {...restCellProps}>
+                    {cell.render("Cell")}
+                  </td>
                 );
-            })}
-            </tbody>
-        </table>
-    );
+              })}
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
 }

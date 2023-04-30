@@ -22,8 +22,8 @@ export default function Dashboard() {
   useEffect(() => {
     const id = navigator.geolocation.watchPosition((position) => {
       mutate(
-          { lat: position.coords.latitude, lng: position.coords.longitude },
-          false
+        { lat: position.coords.latitude, lng: position.coords.longitude },
+        false
       );
     });
     return () => navigator.geolocation.clearWatch(id);
@@ -31,9 +31,9 @@ export default function Dashboard() {
 
   if (isLocationsLoading) {
     return (
-        <div className={styles.dashboardContainer}>
-          <HashLoader color="#36d7b7" speedMultiplier={1.2} />
-        </div>
+      <div className={styles.dashboardContainer}>
+        <HashLoader color="#36d7b7" speedMultiplier={1.2} />
+      </div>
     );
   }
 
@@ -42,18 +42,16 @@ export default function Dashboard() {
   };
 
   return (
-    <>
+    <div className={styles.dashboardContainer}>
       <Header />
-      <div className={styles.dashboardContainer}>
-        <Weather />
-        <Map locations={locations} pos={position} highlight={highlight} />
-        <List
-          locations={locations}
-          pos={position}
-          changeHighlight={handleHighlight}
-        />
-      </div>
-    </>
+      <Weather />
+      <Map locations={locations} pos={position} highlight={highlight} />
+      <List
+        locations={locations}
+        pos={position}
+        changeHighlight={handleHighlight}
+      />
+    </div>
   );
 }
 
