@@ -63,7 +63,7 @@ export default function Study({ params }) {
     { value: 2, label: "👤" },
     { value: 3, label: "👤👤" },
     { value: 4, label: "👥👥"},
-    { value: 5, label: "👥👤👥" },
+    { value: 5, label: "👥👥👥" },
   ];
 
   return (
