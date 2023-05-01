@@ -1,5 +1,15 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+This app is deployed at https://bu-study-buddy.vercel.app/.
+
+Database: serverless MySQL using [PlanetScale](https://planetscale.com/)
+
+Frontend: Nextjs [App Router](https://beta.nextjs.org/docs/app-directory-roadmap)
+
+Backend: Nextjs [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers)
+
+APIs: [OpenWeather](https://openweathermap.org/api) and [Google Maps](https://developers.google.com/maps/documentation/javascript/overview) (with [@react-google-maps/api](https://www.npmjs.com/package/@react-google-maps/api))
+
 ## Getting Started
 
 First, run the development server:
