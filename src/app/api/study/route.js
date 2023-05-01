@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
 
 import db from "@/lib/db";
 
@@ -26,11 +25,6 @@ export async function GET(req) {
 }
 
 export async function POST(req) {
-  const token = await getToken({ req });
-  if (!token) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
   const { searchParams } = new URL(req.url);
   const id = searchParams.get("id");
   if (!id) {
