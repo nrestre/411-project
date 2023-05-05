@@ -11,19 +11,19 @@ export default function List({ locations, pos, changeHighlight }) {
   const columns = useMemo(
     () => [
       {
-        Header: "Name",
+        Header: "Location",
         accessor: "name",
       },
       {
-        Header: "Distance",
+        Header: "Distance (mi)",
         accessor: "distance",
       },
       {
-        Header: "Noise Level",
+        Header: "Noise / 5",
         accessor: "noiseLevel",
       },
       {
-        Header: "Crowd Level",
+        Header: "Crowd / 5",
         accessor: "crowdLevel",
       },
     ],
