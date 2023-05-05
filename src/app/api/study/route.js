@@ -32,9 +32,14 @@ export async function POST(req) {
   }
 
   const { crowdLevel, noiseLevel } = await req.json();
-  if (!crowdLevel && !noiseLevel) {
+  if (
+    !crowdLevel ||
+    !noiseLevel ||
+    !(1 <= crowdLevel <= 5) ||
+    !(1 <= noiseLevel <= 5)
+  ) {
     return NextResponse.json(
-      { error: "Missing crowdLevel and noiseLevel" },
+      { error: "Invalid crowdLevel and/or noiseLevel" },
       { status: 400 }
     );
   }
